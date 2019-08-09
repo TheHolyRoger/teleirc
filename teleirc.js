@@ -18,18 +18,22 @@ teleIrc.initStage2_telegramConfigValidation();
 // Create the IRC bot side with the settings specified in config object above
 console.log("Starting up bot on IRC...");
 let ircbot = new irc.Client(config.irc.server, config.irc.botName, {
+  port: config.irc.port,
+  selfSigned: config.irc.tlsAllowSelfSigned,
+  certExpired: config.irc.tlsAllowCertExpired,
   channels: [config.irc.channel],
   debug: false,
   nick: config.irc.botName,
   userName: config.irc.botName,
   sasl: config.irc.sasl,
-  password: config.irc.password
+  password: config.irc.password,
+  autoConnect: false,
+  autoRejoin: true
 });
 
 // Create the telegram bot side with the settings specified in config object above
 console.log("Starting up bot on Telegram...");
 let tgbot = new tg(config.token, { polling: true });
-
 teleIrc.initStage3_initBots(ircbot, tgbot);
 
 console.log("Adding IRC Listeners...");
@@ -38,4 +42,4 @@ teleIrc.initStage4_addIrcListeners();
 console.log("Enabling Telegram message sending...");
 teleIrc.initStage5_initTelegramMessageSending();
 
-console.log("Setup complete! Teleirc now running.");
+console.log("Setup complete! TeleIRC now running.");
