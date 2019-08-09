@@ -1,0 +1,17 @@
+plugins:
+  eslint:
+    enabled: true
+    channel: "eslint-4"
+    config:
+      extensions:
+      - .js
+      - .jsx
+  nodesecurity:
+    enabled: true
+checks:
+    similar-code:
+        enabled: true
+        config:
+            languages:
+               javascript:
+                   threshold: 50

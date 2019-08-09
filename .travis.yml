@@ -1,17 +1,31 @@
-dist: trusty
+dist: xenial
 sudo: false
 language: node_js
-cache: yarn
-
 node_js:
-  - 6
-  - 7
   - 8
-before_install:
-  - cp .env.example .env
-  - cp config.js.example config.js
+  - 10
+
+cache:
+  npm: false
+  yarn: false
+
+addons:
+  apt:
+    update: true
+    packages:
+    - libicu-dev
+
+before_install: cp env.example .env
 install:
   - yarn
   - yarn global add nodeunit
-
 script: yarn test
+
+notifications:
+  irc:
+    channels:
+      - "ircs://chat.freenode.net:6697/#ritlug-teleirc"
+    template:
+      - "[%{repository_name}:%{branch}@%{commit} - build #%{build_number}] CI %{result}! (%{build_url})"
+    on_success: change
+    on_failure: always
