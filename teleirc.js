@@ -23,7 +23,10 @@ let ircbot = new irc.Client(config.irc.server, config.irc.botName, {
   certExpired: config.irc.tlsAllowCertExpired,
   channels: [config.irc.channel],
   debug: false,
-  username: config.irc.botName,
+  nick: config.irc.botName,
+  userName: config.irc.botName,
+  sasl: config.irc.sasl,
+  password: config.irc.password,
   autoConnect: false,
   autoRejoin: true
 });
