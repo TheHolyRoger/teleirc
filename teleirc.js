@@ -2,7 +2,7 @@
 
 const dotenv = require('dotenv').config();
 const tg = require("node-telegram-bot-api");
-const irc = require("irc");
+const irc = require("irc-upd");
 const TeleIrc = require("./lib/TeleIrc");
 const config = require("./config");
 
